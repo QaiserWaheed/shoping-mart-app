@@ -16,26 +16,26 @@ app.use(require("./router/userRoute"));
 app.use(require("./router/postOrder"));
 
 // Serve static files
-app.use(express.static(path.join(__dirname, "./super-mart/build")));
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./super-mart/build", "index.html"));
-});
+// app.use(express.static(path.join(__dirname, "./super-mart/build")));
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "./super-mart/build", "index.html"));
+// });
 
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
-
 
 // Default error handler
 app.use((req, res, next) => {
   res.status(404).json({ message: "Route not found" });
 });
 
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Internal Server Error" });
-});
+})
 
 
 

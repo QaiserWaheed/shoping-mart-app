@@ -7,7 +7,7 @@ const { body, validationResult } = require("express-validator");
 const generateToken = require("../generateToken");
 const VerificationToken = require("../models/verificationToken");
 const crypto = require("crypto");
-const verifyMail = require("../mail");
+
 const nodemailer = require("nodemailer");
 
 // for sign up

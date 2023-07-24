@@ -40,13 +40,13 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    this.password = await bcrypt.hash(this.password, 12);
-    this.confirmPassword = await bcrypt.hash(this.password, 12);
-  }
-  next();
-});
+// userSchema.pre("save", async function (next) {
+//   if (this.isModified("password")) {
+//     this.password = await bcrypt.hash(this.password, 12);
+//     this.confirmPassword = await bcrypt.hash(this.password, 12);
+//   }
+//   next();
+// });
 
 //generating token
 // userSchema.methods.generateAuthToken = async function () {

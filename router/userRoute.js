@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/userSchema");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const generateToken = require("../generateToken");
 const VerificationToken = require("../models/verificationToken");
+const crypto = require("crypto");
+const verifyMail = require("../mail");
 const nodemailer = require("nodemailer");
 
 // for sign up
@@ -127,6 +130,24 @@ router.post("/signup/:verificationToken", async (req, res) => {
   }
 });
 
+// verification page
+// router.get("/users/confirm/:verificationToken", async (req, res) => {
+//   try {
+//     const token = await VerificationToken.findOne({
+//       token: req.params.verificationToken,
+//     });
+//     if (!token) {
+//       return res.status(404).send("Token not found");
+//     }
+
+//     await User.updateOne({ _id: token.userId }, { $set: { verified: true } });
+//     await VerificationToken.findByIdAndRemove(token._id);
+//     res.send("Email verified");
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 // for login
 router.post("/login", async (req, res) => {
